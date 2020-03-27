@@ -1,4 +1,4 @@
-module github.com/dahendel/terraform-provider-awx2
+module github.com/davidfischer-ch/terraform-provider-awx
 
 go 1.12
 

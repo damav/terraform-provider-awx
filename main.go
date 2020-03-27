@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/dahendel/terraform-provider-awx2/awx"
+	"github.com/davidfischer-ch/terraform-provider-awx/awx"
 	"github.com/hashicorp/terraform/plugin"
 	"github.com/hashicorp/terraform/terraform"
 )
