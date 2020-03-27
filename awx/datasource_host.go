@@ -1,9 +1,10 @@
 package awx
 
 import (
-	"github.com/hashicorp/terraform/helper/schema"
-	"gitlab.com/dhendel/awx-go"
 	"strconv"
+
+	"github.com/hashicorp/terraform/helper/schema"
+	awxgo "gitlab.com/dhendel/awx-go"
 )
 
 func dataSourceHost() *schema.Resource {
@@ -25,7 +26,7 @@ func dataSourceHost() *schema.Resource {
 }
 
 func dataSourceHostRead(d *schema.ResourceData, meta interface{}) error {
-	awx := meta.(*awx.AWX)
+	awx := meta.(*awxgo.AWX)
 	awxService := awx.HostService
 	_, res, err := awxService.ListHosts(map[string]string{
 		"name": d.Get("name").(string)})
@@ -40,7 +41,7 @@ func dataSourceHostRead(d *schema.ResourceData, meta interface{}) error {
 	return nil
 }
 
-func setHostSourceData(d *schema.ResourceData, r *awx.Host) *schema.ResourceData {
+func setHostSourceData(d *schema.ResourceData, r *awxgo.Host) *schema.ResourceData {
 	d.Set("name", r.Name)
 	d.Set("id", r.ID)
 	return d

@@ -1,9 +1,10 @@
 package awx
 
 import (
-	"github.com/hashicorp/terraform/helper/schema"
-	"gitlab.com/dhendel/awx-go"
 	"strconv"
+
+	"github.com/hashicorp/terraform/helper/schema"
+	awxgo "gitlab.com/dhendel/awx-go"
 )
 
 func dataSourceInventory() *schema.Resource {
@@ -25,7 +26,7 @@ func dataSourceInventory() *schema.Resource {
 }
 
 func dataSourceInventoryRead(d *schema.ResourceData, meta interface{}) error {
-	awx := meta.(*awx.AWX)
+	awx := meta.(*awxgo.AWX)
 	awxService := awx.InventoriesService
 	_, res, err := awxService.ListInventories(map[string]string{
 		"name": d.Get("name").(string)})
@@ -40,7 +41,7 @@ func dataSourceInventoryRead(d *schema.ResourceData, meta interface{}) error {
 	return nil
 }
 
-func setInventoryDataSource(d *schema.ResourceData, r *awx.Inventory) *schema.ResourceData {
+func setInventoryDataSource(d *schema.ResourceData, r *awxgo.Inventory) *schema.ResourceData {
 	d.Set("name", r.Name)
 	d.Set("id", r.ID)
 	return d

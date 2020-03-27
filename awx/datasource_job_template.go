@@ -1,9 +1,10 @@
 package awx
 
 import (
-	"github.com/hashicorp/terraform/helper/schema"
-	"gitlab.com/dhendel/awx-go"
 	"strconv"
+
+	"github.com/hashicorp/terraform/helper/schema"
+	awxgo "gitlab.com/dhendel/awx-go"
 )
 
 func dataSourceJobTemplate() *schema.Resource {
@@ -30,7 +31,7 @@ func dataSourceJobTemplate() *schema.Resource {
 }
 
 func dataSourceJobTemplateRead(d *schema.ResourceData, meta interface{}) error {
-	awx := meta.(*awx.AWX)
+	awx := meta.(*awxgo.AWX)
 	awxService := awx.JobTemplateService
 	_, res, err := awxService.ListJobTemplates(map[string]string{
 		"name": d.Get("name").(string)})
@@ -45,7 +46,7 @@ func dataSourceJobTemplateRead(d *schema.ResourceData, meta interface{}) error {
 	return nil
 }
 
-func setJobTemplateDataSourceData(d *schema.ResourceData, r *awx.JobTemplate) *schema.ResourceData {
+func setJobTemplateDataSourceData(d *schema.ResourceData, r *awxgo.JobTemplate) *schema.ResourceData {
 	d.Set("name", r.Name)
 	d.Set("id", r.ID)
 	d.Set("prompt_inventory", r.AskInventoryOnLaunch)

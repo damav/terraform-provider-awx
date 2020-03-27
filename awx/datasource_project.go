@@ -1,9 +1,10 @@
 package awx
 
 import (
-	"github.com/hashicorp/terraform/helper/schema"
-	"gitlab.com/dhendel/awx-go"
 	"strconv"
+
+	"github.com/hashicorp/terraform/helper/schema"
+	awxgo "gitlab.com/dhendel/awx-go"
 )
 
 func dataSourceProjectObject() *schema.Resource {
@@ -25,7 +26,7 @@ func dataSourceProjectObject() *schema.Resource {
 }
 
 func dataSourceProjectObjectRead(d *schema.ResourceData, meta interface{}) error {
-	awx := meta.(*awx.AWX)
+	awx := meta.(*awxgo.AWX)
 	awxService := awx.ProjectService
 	_, res, err := awxService.ListProjects(map[string]string{
 		"name": d.Get("name").(string)})
@@ -40,7 +41,7 @@ func dataSourceProjectObjectRead(d *schema.ResourceData, meta interface{}) error
 	return nil
 }
 
-func setProjectDataSourceData(d *schema.ResourceData, r *awx.Project) *schema.ResourceData {
+func setProjectDataSourceData(d *schema.ResourceData, r *awxgo.Project) *schema.ResourceData {
 	d.Set("name", r.Name)
 	d.Set("id", r.ID)
 	return d

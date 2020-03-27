@@ -1,9 +1,10 @@
 package awx
 
 import (
-	"github.com/hashicorp/terraform/helper/schema"
-	"gitlab.com/dhendel/awx-go"
 	"strconv"
+
+	"github.com/hashicorp/terraform/helper/schema"
+	awxgo "gitlab.com/dhendel/awx-go"
 )
 
 func dataSourceInventoryGroup() *schema.Resource {
@@ -30,7 +31,7 @@ func dataSourceInventoryGroup() *schema.Resource {
 }
 
 func dataSourceInventoryGroupRead(d *schema.ResourceData, meta interface{}) error {
-	awx := meta.(*awx.AWX)
+	awx := meta.(*awxgo.AWX)
 	awxService := awx.GroupService
 	_, res, err := awxService.ListGroups(map[string]string{
 		"name": d.Get("name").(string)})
@@ -46,7 +47,7 @@ func dataSourceInventoryGroupRead(d *schema.ResourceData, meta interface{}) erro
 	return nil
 }
 
-func setInventoryGroupSourceData(d *schema.ResourceData, r *awx.Group) *schema.ResourceData {
+func setInventoryGroupSourceData(d *schema.ResourceData, r *awxgo.Group) *schema.ResourceData {
 	d.Set("name", r.Name)
 	d.Set("id", r.ID)
 	d.Set("inventory_id", r.Inventory)
