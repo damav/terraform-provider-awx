@@ -39,11 +39,11 @@ func Provider() terraform.ResourceProvider {
 				Description: descriptions["password"],
 				Sensitive:   true,
 			},
-			"ssl_verify": &schema.Schema{
+			"ssl_skip_verify": &schema.Schema{
 				Type:        schema.TypeBool,
 				Optional:    true,
 				Default:     false,
-				Description: descriptions["ssl_verify"],
+				Description: descriptions["ssl_skip_verify"],
 				Sensitive:   true,
 			},
 		},
@@ -75,10 +75,10 @@ func providerConfigure(d *schema.ResourceData) (interface{}, error) {
 	log.Printf("[INFO] Initializing Tower Client")
 
 	config := &Config{
-		Endpoint:  d.Get("endpoint").(string),
-		Username:  d.Get("username").(string),
-		Password:  d.Get("password").(string),
-		Sslverify: d.Get("ssl_verify").(bool),
+		Endpoint:      d.Get("endpoint").(string),
+		Username:      d.Get("username").(string),
+		Password:      d.Get("password").(string),
+		SslSkipVerify: d.Get("ssl_skip_verify").(bool),
 	}
 
 	return config.Client(), nil
@@ -88,9 +88,9 @@ var descriptions map[string]string
 
 func init() {
 	descriptions = map[string]string{
-		"endpoint":   "The API Endpoint used to invoke Ansible Tower/AWX",
-		"username":   "The Ansible Tower API Username",
-		"password":   "The Ansible Tower API Password",
-		"ssl_verify": "Skip SSL certificate check",
+		"endpoint":        "The API Endpoint used to invoke Ansible Tower/AWX",
+		"username":        "The Ansible Tower API Username",
+		"password":        "The Ansible Tower API Password",
+		"ssl_skip_verify": "Skip SSL certificate check",
 	}
 }

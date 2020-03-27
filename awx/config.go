@@ -9,16 +9,16 @@ import (
 
 // Config of Ansible Tower/AWX
 type Config struct {
-	Username  string
-	Password  string
-	Endpoint  string
-	Sslverify bool
+	Username      string
+	Password      string
+	Endpoint      string
+	SslSkipVerify bool
 }
 
 // Client for Tower/AWX API v2
 func (c *Config) Client() *awxgo.AWX {
 	tr := &http.Transport{
-		TLSClientConfig: &tls.Config{InsecureSkipVerify: c.Sslverify},
+		TLSClientConfig: &tls.Config{InsecureSkipVerify: c.SslSkipVerify},
 	}
 
 	client := &http.Client{Transport: tr}
