@@ -4,7 +4,7 @@ import (
 	"crypto/tls"
 	"net/http"
 
-	awxgo "gitlab.com/dhendel/awx-go"
+	awxgo "github.com/davidfischer-ch/awx-go"
 )
 
 // Config of Ansible Tower/AWX

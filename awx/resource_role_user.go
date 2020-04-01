@@ -6,7 +6,7 @@ import (
 	"time"
 
 	"github.com/hashicorp/terraform/helper/schema"
-	awxgo "gitlab.com/dhendel/awx-go"
+	awxgo "github.com/davidfischer-ch/awx-go"
 )
 
 func resourceUserRoleObject() *schema.Resource {

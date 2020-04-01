@@ -5,7 +5,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/terraform/helper/schema"
-	awxgo "gitlab.com/dhendel/awx-go"
+	awxgo "github.com/davidfischer-ch/awx-go"
 	"gopkg.in/yaml.v2"
 )
 
