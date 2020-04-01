@@ -4,8 +4,8 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/hashicorp/terraform/helper/schema"
 	awxgo "github.com/davidfischer-ch/awx-go"
+	"github.com/hashicorp/terraform/helper/schema"
 	"gopkg.in/yaml.v2"
 )
 
