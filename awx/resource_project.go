@@ -67,7 +67,7 @@ func resourceProjectObject() *schema.Resource {
 				Default:  false,
 			},
 			"credential_id": &schema.Schema{
-				Type:     schema.TypeString,
+				Type:     schema.TypeInt,
 				Optional: true,
 			},
 			"organization_id": &schema.Schema{
@@ -111,7 +111,7 @@ func resourceProjectCreate(d *schema.ResourceData, m interface{}) error {
 	}
 	if len(res.Results) >= 1 {
 		return fmt.Errorf("Project with name %s already exists in the organization %s",
-			d.Get("name").(string), d.Get("organization_id").(string))
+			d.Get("name").(string), d.Get("organization_id").(int))
 	}
 
 	result, err := awxService.CreateProject(map[string]interface{}{
@@ -123,7 +123,7 @@ func resourceProjectCreate(d *schema.ResourceData, m interface{}) error {
 		"scm_branch":               d.Get("scm_branch").(string),
 		"scm_clean":                d.Get("scm_clean").(bool),
 		"scm_delete_on_update":     d.Get("scm_delete_on_update").(bool),
-		"credential_id":            AtoipOr(d.Get("credential_id").(string), nil),
+		"credential":               d.Get("credential_id").(int),
 		"organization":             d.Get("organization_id").(int),
 		"scm_update_on_launch":     d.Get("scm_update_on_launch").(bool),
 		"scm_update_cache_timeout": d.Get("scm_update_cache_timeout").(int),
@@ -163,8 +163,8 @@ func resourceProjectUpdate(d *schema.ResourceData, m interface{}) error {
 		"scm_branch":               d.Get("scm_branch").(string),
 		"scm_clean":                d.Get("scm_clean").(bool),
 		"scm_delete_on_update":     d.Get("scm_delete_on_update").(bool),
-		"credential_id":            AtoipOr(d.Get("credential_id").(string), nil),
-		"organization":             AtoipOr(d.Get("organization_id").(string), nil),
+		"credential":               d.Get("credential_id").(int),
+		"organization":             d.Get("organization_id").(int),
 		"scm_update_on_launch":     d.Get("scm_update_on_launch").(bool),
 		"scm_update_cache_timeout": d.Get("scm_update_cache_timeout").(int),
 	}, map[string]string{})
