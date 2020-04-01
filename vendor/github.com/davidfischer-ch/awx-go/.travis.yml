@@ -1,0 +1,22 @@
+language: go
+
+go:
+  - 1.10.x
+  - 1.14.x
+
+go_import_path: github.com/davidfischer-ch/awx-go
+
+# DEPRECATED
+install:
+   - go get ${gobuild_args} ./...
+#  - go get -u github.com/alecthomas/gometalinter
+#  - gometalinter --install
+
+script:
+#  - make lint
+  - ./codecov.sh
+  - make build
+  - make test
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
