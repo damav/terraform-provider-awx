@@ -34,8 +34,8 @@ release:
   # Default is extracted from the origin remote URL.
   # Note: it can only be one: either github or gitlab or gitea
   github:
-    owner: dahendel
-    name: terraform-provider-awx2
+    owner: davidfischer-ch
+    name: terraform-provider-awx
 
   # If set to true, will not auto-publish the release.
   # Default is false.

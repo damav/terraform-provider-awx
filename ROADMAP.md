@@ -19,3 +19,8 @@
 - [-] Create the resource organization and tests
 - [x] Create the resource project and tests
 - [x] Create the resource job_template and tests
+- [x] Terraform 0.12.x Supported
+- [x] Support to add nested groups for InventoryGroups
+- [x] Support for extra credentials in a job template
+- [x] Uses go modules
+- [ ] DataSources

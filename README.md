@@ -1,54 +1,33 @@
-# terraform-provider-awx2
-
-FORKED FROM: https://github.com/mauromedda/terraform-provider-awx
-
-Also Check Out AWX/Tower Provisioner: https://github.com/dahendel/terraform-provisioner-awx
+# terraform-provider-awx
 
 ***UNDER DEVELOPMENT ***
-terraform-provider-awx is still in developing, and it's roadmap could be found at [here](https://github.com/mauromedda/terraform-provider-awx/blob/master/ROADMAP.md).
+terraform-provider-awx is still in developing, and it's roadmap could be found at [here](https://github.com/davidfischer-ch/terraform-provider-awx/blob/master/ROADMAP.md).
 
-### Additions
-
- - [x] Terraform 0.12.x Supported
- 
- - [x] Support to add nested groups for InventoryGroups
- 
- - [x] Support for extra credentials in a job template
- 
- - [x] Uses go modules  
- 
- - [ ] DataSources
-
-Terraform Provider
-==================
+## Terraform Provider
 
 - Website: https://www.terraform.io
 - [![Gitter chat](https://badges.gitter.im/hashicorp-terraform/Lobby.png)](https://gitter.im/hashicorp-terraform/Lobby)
 - Mailing list: [Google Groups](http://groups.google.com/group/terraform-tool)
 
+### Requirements
 
-Requirements
-------------
+- [Terraform](https://www.terraform.io/downloads.html) 0.12.6
+- [Go](https://golang.org/doc/install) 1.12 (to build the provider plugin)
+- [Go Modules](https://blog.golang.org/modules2019)
 
--	[Terraform](https://www.terraform.io/downloads.html) 0.12.6
--	[Go](https://golang.org/doc/install) 1.12 (to build the provider plugin)
--   [Go Modules](https://blog.golang.org/modules2019)
-
-Building The Provider
----------------------
+### Building The Provider
 
 ```bash
-go get github.com/dahendel/terraform-provider-awx2
-cd $GOPATH/src/github.com/dahendel/terraform-provider-awx2
+go get github.com/davidfischer-ch/terraform-provider-awx
+cd $GOPATH/src/github.com/davidfischer-ch/terraform-provider-awx
 go build -mod vendor -o terraform-provider-awx
 ```
 
-Using the provider
-----------------------
+### Using the Provider
+
 If you're building the provider, follow the instructions to [install it as a plugin.](https://www.terraform.io/docs/plugins/basics.html#installing-a-plugin) After placing it into your plugins directory,  run `terraform init` to initialize it.
 
-Developing the Provider
----------------------------
+### Developing the Provider
 
 If you wish to work on the provider, you'll first need [Go](http://www.golang.org) installed on your machine (version 1.9+ is *required*). You'll also need to correctly setup a [GOPATH](http://golang.org/doc/code.html#GOPATH), as well as adding `$GOPATH/bin` to your `$PATH`.
 
