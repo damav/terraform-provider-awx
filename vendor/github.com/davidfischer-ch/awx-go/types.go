@@ -200,19 +200,21 @@ type Project struct {
 	ScmType               string    `json:"scm_type"`
 	ScmURL                string    `json:"scm_url"`
 	ScmBranch             string    `json:"scm_branch"`
+	ScmRefSpec            string    `json:"scm_refspec"`
 	ScmClean              bool      `json:"scm_clean"`
 	ScmDeleteOnUpdate     bool      `json:"scm_delete_on_update"`
 	Credential            string    `json:"credential"`
 	Timeout               int       `json:"timeout"`
+	ScmRevision           string    `json:"scm_revision"`
 	LastJobRun            time.Time `json:"last_job_run"`
 	LastJobFailed         bool      `json:"last_job_failed"`
 	NextJobRun            time.Time `json:"next_job_run"`
 	Status                string    `json:"status"`
 	Organization          int       `json:"organization"`
-	ScmDeleteOnNextUpdate bool      `json:"scm_delete_on_next_update"`
 	ScmUpdateOnLaunch     bool      `json:"scm_update_on_launch"`
 	ScmUpdateCacheTimeout int       `json:"scm_update_cache_timeout"`
-	ScmRevision           string    `json:"scm_revision"`
+	AllowOverride         bool      `json:"allow_override"`
+	CustomVirtualenv      string    `json:"custom_virtualenv"`
 	LastUpdateFailed      bool      `json:"last_update_failed"`
 	LastUpdated           time.Time `json:"last_updated"`
 }
