@@ -28,12 +28,7 @@ func resourceProjectObject() *schema.Resource {
 				Default:     "",
 				Description: "Optional description of this project.",
 			},
-			"local_path": &schema.Schema{
-				Type:        schema.TypeString,
-				Optional:    true,
-				Default:     "",
-				Description: "Local path (relative to PROJECTS_ROOT) containing playbooks and related files for this project.",
-			},
+			// local_path is not writable - tested 2020-04-07
 			"scm_type": &schema.Schema{
 				Type:        schema.TypeString,
 				Required:    true,
@@ -141,7 +136,6 @@ func resourceProjectCreate(d *schema.ResourceData, m interface{}) error {
 	result, err := awxService.CreateProject(map[string]interface{}{
 		"name":                     d.Get("name").(string),
 		"description":              d.Get("description").(string),
-		"local_path":               d.Get("local_path").(string),
 		"scm_type":                 d.Get("scm_type").(string),
 		"scm_url":                  d.Get("scm_url").(string),
 		"scm_branch":               d.Get("scm_branch").(string),
@@ -185,7 +179,6 @@ func resourceProjectUpdate(d *schema.ResourceData, m interface{}) error {
 	_, err = awxService.UpdateProject(id, map[string]interface{}{
 		"name":                     d.Get("name").(string),
 		"description":              d.Get("description").(string),
-		"local_path":               d.Get("local_path").(string),
 		"scm_type":                 d.Get("scm_type").(string),
 		"scm_url":                  d.Get("scm_url").(string),
 		"scm_branch":               d.Get("scm_branch").(string),
@@ -270,7 +263,6 @@ func resourceProjectDelete(d *schema.ResourceData, m interface{}) error {
 func setProjectResourceData(d *schema.ResourceData, r *awxgo.Project) *schema.ResourceData {
 	d.Set("name", r.Name)
 	d.Set("description", r.Description)
-	d.Set("local_path", r.LocalPath)
 	d.Set("scm_type", r.ScmType)
 	d.Set("scm_url", r.ScmURL)
 	d.Set("scm_branch", r.ScmBranch)
