@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.2.3
+
+### Fix and enhancements
+
+- Add new parameters to JobTemplate
+
 ## v0.2.2
 
 ### Fix and enhancements

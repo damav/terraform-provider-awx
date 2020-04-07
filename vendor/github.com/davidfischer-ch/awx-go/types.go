@@ -315,6 +315,7 @@ type JobTemplate struct {
 	Inventory             int         `json:"inventory"`
 	Project               int         `json:"project"`
 	Playbook              string      `json:"playbook"`
+	ScmBranch             string      `json:"scm_branch"`
 	Forks                 int         `json:"forks"`
 	Limit                 string      `json:"limit"`
 	Verbosity             int         `json:"verbosity"`
@@ -330,6 +331,7 @@ type JobTemplate struct {
 	NextJobRun            interface{} `json:"next_job_run"`
 	Status                string      `json:"status"`
 	HostConfigKey         string      `json:"host_config_key"`
+	AskScmBranchOnLaunch  bool        `json:"ask_scm_branch_on_launch"`
 	AskDiffModeOnLaunch   bool        `json:"ask_diff_mode_on_launch"`
 	AskVariablesOnLaunch  bool        `json:"ask_variables_on_launch"`
 	AskLimitOnLaunch      bool        `json:"ask_limit_on_launch"`
@@ -344,9 +346,14 @@ type JobTemplate struct {
 	DiffMode              bool        `json:"diff_mode"`
 	AllowSimultaneous     bool        `json:"allow_simultaneous"`
 	CustomVirtualenv      interface{} `json:"custom_virtualenv"`
-	Credential            int         `json:"credential"`
-	VaultCredential       interface{} `json:"vault_credential"`
-	AllowCallbacks        bool        `json:"allow_callbacks"`
+	JobSliceCount         int         `json:"job_slice_count"`
+	WebhookService        string      `json:"webhook_service"`
+	WebhookCredential     string      `json:"webhook_credential"`
+
+	// Not found in browsable API (OPTIONS on https://<awx-server>/api/v2/job_templates/)
+	Credential      int         `json:"credential"`
+	VaultCredential interface{} `json:"vault_credential"`
+	AllowCallbacks  bool        `json:"allow_callbacks"`
 }
 
 // JobLaunch represents the awx api job launch.
