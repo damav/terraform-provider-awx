@@ -1,5 +1,12 @@
 # Changelog
 
+## v0.2.3
+
+### Fix and enhancements
+
+- Refresh fields of resource_job_template
+- Upgrade awx-go to v0.2.3
+
 ## v0.2.2
 
 ### Fix and enhancements
