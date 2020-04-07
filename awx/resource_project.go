@@ -110,7 +110,7 @@ func resourceProjectCreate(d *schema.ResourceData, m interface{}) error {
 		return err
 	}
 	if len(res.Results) >= 1 {
-		return fmt.Errorf("Project with name %s already exists in the organization %s",
+		return fmt.Errorf("Project with name %s already exists in the organization %d",
 			d.Get("name").(string), d.Get("organization_id").(int))
 	}
 
