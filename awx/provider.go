@@ -40,9 +40,12 @@ func Provider() terraform.ResourceProvider {
 				Sensitive:   true,
 			},
 			"ssl_skip_verify": &schema.Schema{
-				Type:        schema.TypeBool,
-				Optional:    true,
-				Default:     false,
+				Type:     schema.TypeBool,
+				Optional: true,
+				DefaultFunc: schema.MultiEnvDefaultFunc([]string{
+					"TOWER_SSLSKIPVERIFY",
+					"AWX_SSLSKIPVERIFY",
+				}, false),
 				Description: descriptions["ssl_skip_verify"],
 				Sensitive:   true,
 			},
